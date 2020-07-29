@@ -1,0 +1,68 @@
+workflows:
+  master:
+    name: Master
+    max_build_duration: 45
+    environment:
+      vars:
+        CODECOV_TOKEN: Encrypted(Z0FBQUFBQmZJVHRmN1NwZV9sZzdjTnRRQXh3Wm5GT0NKZVlpWVlSTWQweFZMRkxrRkQxMUdUdVdjeG9qd3NyamlwUUVMYUFFdjZKSXRJU25YaVlJeTZlcjJWUDNYZEVkUThuMW81NXA1WmNmeE43ZmZQSlEwd1kyQnpaSnFPSVBfNlJLajlPRHY1a00=)
+        BUILD_TYPE: debug
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: master
+          include: true
+          source: true
+    scripts:
+      - name: Static Analysis
+        script: |
+          make analyze
+      - name: Testing
+        script: |
+          make unit-test
+      - name: Coverage Report
+        script: |
+          make coverage
+      - name: Assemble
+        script: |
+          make assemble
+      - name: Bundle
+        script:
+          make bundle
+    artifacts:
+      - coverage/lcov.info
+      - flutter_drive.log
+
+  pull-request:
+    name: Pull Request
+    max_build_duration: 20
+    environment:
+      vars:
+        CODECOV_TOKEN: Encrypted(Z0FBQUFBQmZJVHRmN1NwZV9sZzdjTnRRQXh3Wm5GT0NKZVlpWVlSTWQweFZMRkxrRkQxMUdUdVdjeG9qd3NyamlwUUVMYUFFdjZKSXRJU25YaVlJeTZlcjJWUDNYZEVkUThuMW81NXA1WmNmeE43ZmZQSlEwd1kyQnpaSnFPSVBfNlJLajlPRHY1a00=)
+        BUILD_TYPE: debug
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    triggering:
+      events:
+        - pull_request
+      branch_patterns:
+        - pattern: master
+          include: true
+          source: false
+    scripts:
+      - name: Static Analysis
+        script: |
+          make analyze
+      - name: Testing
+        script: |
+          make unit-test
+      - name: Coverage Report
+        script: |
+          make coverage
+    artifacts:
+      - coverage/lcov.info
+      - flutter_drive.log

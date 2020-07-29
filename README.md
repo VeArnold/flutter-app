@@ -1,16 +1,26 @@
-# flutter_app
+# Flutter App Template
 
-A new Flutter application.
+[![Codemagic build status](https://api.codemagic.io/apps/5f213b1da98453a2abe96656/5f213b1da98453a2abe96655/status_badge.svg)](https://codemagic.io/apps/5f213b1da98453a2abe96656/5f213b1da98453a2abe96655/latest_build)
+[![codecov](https://codecov.io/gh/HelloCuriosity/flutter-app/branch/master/graph/badge.svg?token=P0OTYOBGG4)](https://codecov.io/gh/HelloCuriosity/flutter-app)
+[![License](https://img.shields.io/dub/l/vibe-d.svg)](https://github.com/HelloCuriosity/flutter-app/blob/master/LICENSE)
+[![ko-fi](https://img.shields.io/badge/donate%20on-Ko--fi-blue.svg)](https://ko-fi.com/U7U4L9F5)
 
-## Getting Started
+## Codemagic CI Integration
+- [Covdecov](https://codecov.io) coverage reports
+- Unit testing
+- Static code analysis
+- Build APKs
+- Build Bundles
 
-This project is a starting point for a Flutter application.
+## Build
+The [Makefile](https://github.com/HelloCuriosity/flutter-app/blob/master/Makefile) contains other helpful commands:
 
-A few resources to get you started if this is your first Flutter project:
+### Flutter
+- Static analysis -> `make analyze`
+- Get dependencies -> `make dependencies`
+- Update dependencies -> `make update-dependencies`
+- Run tests -> `make unit-test`
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Android
+- Assemble -> `make assemble`
+- Bundle ->`make bundle`
