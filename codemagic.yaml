@@ -63,6 +63,12 @@ workflows:
       - name: Coverage Report
         script: |
           make coverage
+      - name: Assemble
+        script: |
+          make assemble
+      - name: Bundle
+        script:
+          make bundle
     artifacts:
       - coverage/lcov.info
       - flutter_drive.log
